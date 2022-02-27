@@ -1,0 +1,7 @@
+button {
+  width: 15%;
+}
+.example-card {
+  max-height: 500px;
+  overflow-y: auto;
+}

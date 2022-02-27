@@ -1,0 +1,66 @@
+<div class="container mt-4" style="width: 70%; padding: 0;"> 
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Measuring Component Type</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row mt-4">
+                <div class="col-sm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Measuring Component</mat-label>
+                        <mat-select [(ngModel)]="measuringType">
+                          <mat-option *ngFor="let item of measuringTypes" [value]="item">
+                            {{item}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [(ngModel)]="startDateTime" [matDatepicker]="picker1">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>End Date</mat-label>
+                        <input matInput [(ngModel)]="endDateTime" [matDatepicker]="picker2">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="row" >
+                    <button [disabled]="measuringType===null||startDateTime===null||endDateTime===null" style="margin-left: 55%;" type="button" class="btn btn-primary btn-sm" (click)="onSearch()">Search</button>
+                    <button [disabled]="measuringType===null && startDateTime===null && endDateTime===null"style="margin-left: 5%;" type="button" class="btn btn-secondary btn-sm" (click)="onReset()">Reset</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card *ngIf="tableData!==null" class=" mt-5">
+        <mat-card-header>
+          <mat-card-title>{{badgeNumber}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="example-card">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Reads</th>
+                    <th scope="col">Reads DTTM</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of tableData">
+                        <td>{{item.reads}}</td>
+                        <td>{{item.readDttm}}</td>
+                    </tr>
+                </tbody>
+              </table>
+
+        </mat-card-content>
+    </mat-card>
+</div>
